@@ -9,4 +9,6 @@
     <string name="if_this_your_work_address">If this your work address - please press Save, or refine your search.</string>
     <string name="what_s_your_work_address">What\'s your work address?</string>
     <string name="address_saved">Work Address Saved</string>
+    <string name="start_tracking">Start tracking</string>
+    <string name="stop_tracking">Stop tracking</string>
 </resources>

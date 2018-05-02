@@ -12,6 +12,10 @@
             name="isWorkDefined"
             type="boolean" />
 
+        <variable
+            name="isTracking"
+            type="boolean" />
+
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -62,6 +66,35 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            <Button
+                android:id="@+id/button3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="32dp"
+                android:onClick="onTrackingClicked"
+                android:text="@{isTracking?@string/stop_tracking:@string/start_tracking}"
+                android:visibility="@{isWorkDefined ? View.VISIBLE:  View.GONE }"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:visibility="@{isWorkDefined ? View.VISIBLE:  View.GONE }"
+
+                android:layout_marginTop="16dp"
+                android:onClick="openStats"
+                android:text="Statistics"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button3" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.design.widget.FloatingActionButton

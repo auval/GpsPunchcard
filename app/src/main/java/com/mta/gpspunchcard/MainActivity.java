@@ -15,6 +15,7 @@ import com.mta.gpspunchcard.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity {
 
     ActivityMainBinding binding;
+    boolean tracking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,8 +37,18 @@ public class MainActivity extends AppCompatActivity {
                 // check if work is defined
                 initWorkButton();
 
+                initTrackingState();
+
             }
         }).start();
+    }
+
+    private void initTrackingState() {
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+        tracking = sharedPref.getBoolean("tracking", false);
+
+        binding.setIsTracking(tracking);
     }
 
     @Override
@@ -89,6 +100,29 @@ public class MainActivity extends AppCompatActivity {
     public void onAddWork(View view) {
 
         startActivity(new Intent(this, SearchActivity.class));
+
+    }
+
+    public void onTrackingClicked(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // toggle state
+                SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+                SharedPreferences.Editor editor = sharedPref.edit();
+                editor.putBoolean("tracking", !tracking);
+
+                editor.apply();
+
+                initTrackingState();
+
+            }
+        }).start();
+    }
+
+    public void openStats(View view) {
+        startActivity(new Intent(this, StatsActivity.class));
 
     }
 }
