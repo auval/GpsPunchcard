@@ -3,4 +3,10 @@
     <string name="action_settings">Settings</string>
     <string name="welcome_to">Welcome to GPS Punchcard app!</string>
     <string name="first_we_need">First we need to setup your work address. Please click the button below.</string>
+    <string name="this_is_what_we_found">This is what we found:</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="if_this_your_work_address">If this your work address - please press Save, or refine your search.</string>
+    <string name="what_s_your_work_address">What\'s your work address?</string>
+    <string name="address_saved">Work Address Saved</string>
 </resources>

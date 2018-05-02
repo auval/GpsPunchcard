@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,11 +26,10 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(binding.toolbar);
 
-        asyncInit();
 
     }
 
-    private void asyncInit() {
+    private void asyncStateCheck() {
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -41,8 +40,16 @@ public class MainActivity extends AppCompatActivity {
         }).start();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        asyncStateCheck();
+
+    }
+
     private void initWorkButton() {
-        SharedPreferences sharedPref = getPreferences(MODE_PRIVATE);
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
         String wLat = sharedPref.getString("work-lat", null);
         String wLong = sharedPref.getString("work-long", null);
         String wAddr = sharedPref.getString("work-address", null);
@@ -50,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
         if (wLat == null) {
             // enable the add work button
             binding.setIsWorkDefined(false);
+        } else {
+            binding.setIsWorkDefined(true);
+
         }
 
     }
@@ -77,8 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAddWork(View view) {
-//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                .setAction("Action", null).show();
+
         startActivity(new Intent(this, SearchActivity.class));
 
     }
