@@ -1,5 +1,7 @@
 package com.mta.gpspunchcard;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
@@ -23,6 +25,32 @@ public class MainActivity extends AppCompatActivity {
         binding.setIsWorkDefined(true);
 
         setSupportActionBar(binding.toolbar);
+
+        asyncInit();
+
+    }
+
+    private void asyncInit() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                // check if work is defined
+                initWorkButton();
+
+            }
+        }).start();
+    }
+
+    private void initWorkButton() {
+        SharedPreferences sharedPref = getPreferences(MODE_PRIVATE);
+        String wLat = sharedPref.getString("work-lat", null);
+        String wLong = sharedPref.getString("work-long", null);
+        String wAddr = sharedPref.getString("work-address", null);
+
+        if (wLat == null) {
+            // enable the add work button
+            binding.setIsWorkDefined(false);
+        }
 
     }
 
@@ -49,7 +77,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onAddWork(View view) {
-        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show();
+//        Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                .setAction("Action", null).show();
+        startActivity(new Intent(this, SearchActivity.class));
+
     }
 }
