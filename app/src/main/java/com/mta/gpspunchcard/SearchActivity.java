@@ -1,6 +1,5 @@
 package com.mta.gpspunchcard;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.location.Address;
@@ -26,9 +25,7 @@ import java.util.List;
  */
 public class SearchActivity extends AppCompatActivity {
 
-    //    EditText searchText;
     ActivitySearchBinding searchBinding;
-//    SearchResult result = new SearchResult();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +35,6 @@ public class SearchActivity extends AppCompatActivity {
         searchBinding.setLifecycleOwner(this);
         searchBinding.setSearchResult(new SearchResult(null));
         searchBinding.setIsSearching(false);
-        //  searchBinding.editText.setImeActionLabel("Search", KeyEvent.KEYCODE_SEARCH);
 
         searchBinding.editText.setOnKeyListener(new View.OnKeyListener() {
             @Override

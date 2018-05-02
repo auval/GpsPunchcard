@@ -30,4 +30,14 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    // ref: https://developers.google.com/android/guides/setup
+    implementation 'com.google.android.gms:play-services-maps:15.0.0'
+    implementation 'com.google.android.gms:play-services-location:15.0.0'
+
+    implementation "android.arch.persistence.room:runtime:1.1.0-beta3"
+    annotationProcessor "android.arch.persistence.room:compiler:1.1.0-beta3"
+
+    implementation "android.arch.lifecycle:extensions:1.1.1"
+
 }
